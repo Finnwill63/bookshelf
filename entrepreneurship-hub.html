@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrepreneurship Learning Hub — Will Cardwell</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F2744;
+    --navy-mid: #1a3a5c;
+    --navy-light: #243f63;
+    --orange: #E97132;
+    --orange-light: #f08c52;
+    --cream: #FAF8F4;
+    --cream-dark: #F0EDE6;
+    --ink: #1a1a2e;
+    --muted: #6b7a99;
+    --border: #dde3ee;
+    --white: #ffffff;
+
+    --tag-mindset: #2d6a4f;
+    --tag-mindset-bg: #d8f3dc;
+    --tag-startup: #1565c0;
+    --tag-startup-bg: #e3f2fd;
+    --tag-venture: #6a0572;
+    --tag-venture-bg: #f3e5f5;
+    --tag-sales: #b5451b;
+    --tag-sales-bg: #fbe9e7;
+    --tag-innovation: #e65100;
+    --tag-innovation-bg: #fff3e0;
+    --tag-financial: #004d40;
+    --tag-financial-bg: #e0f2f1;
+    --tag-social: #37474f;
+    --tag-social-bg: #eceff1;
+    --tag-leadership: #4a148c;
+    --tag-leadership-bg: #f3e5f5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: 72px 48px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(233,113,50,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--orange);
+  }
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .stat { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--orange);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  /* NAV TABS */
+  .section-nav {
+    background: var(--navy-mid);
+    padding: 0 48px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-tab {
+    padding: 16px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .nav-tab:hover { color: rgba(255,255,255,0.85); }
+  .nav-tab.active { color: var(--white); border-bottom-color: var(--orange); }
+
+  /* MAIN */
+  main { max-width: 1100px; margin: 0 auto; padding: 48px 32px 96px; }
+
+  /* SECTION HEADER */
+  .section-header {
+    margin-bottom: 32px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .section-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+    align-items: center;
+  }
+  .filter-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-right: 4px;
+  }
+  .filter-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+  .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .filter-btn.clear { border-style: dashed; }
+
+  /* CONTENT SECTION */
+  .content-section { display: none; }
+  .content-section.active { display: block; }
+
+  /* BOOK GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+  }
+  .card:hover {
+    border-color: var(--navy);
+    box-shadow: 0 4px 20px rgba(15,39,68,0.08);
+    transform: translateY(-2px);
+  }
+  .card.hidden { display: none; }
+
+  .card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.25;
+  }
+  .card-author {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .card-why {
+    font-size: 13.5px;
+    color: #3a4460;
+    line-height: 1.6;
+    flex: 1;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .tag-mindset { background: var(--tag-mindset-bg); color: var(--tag-mindset); }
+  .tag-startup { background: var(--tag-startup-bg); color: var(--tag-startup); }
+  .tag-venture { background: var(--tag-venture-bg); color: var(--tag-venture); }
+  .tag-sales { background: var(--tag-sales-bg); color: var(--tag-sales); }
+  .tag-innovation { background: var(--tag-innovation-bg); color: var(--tag-innovation); }
+  .tag-financial { background: var(--tag-financial-bg); color: var(--tag-financial); }
+  .tag-social { background: var(--tag-social-bg); color: var(--tag-social); }
+  .tag-leadership { background: var(--tag-leadership-bg); color: var(--tag-leadership); }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--orange);
+    text-decoration: none;
+    margin-top: 4px;
+  }
+  .card-link:hover { color: var(--orange-light); }
+  .card-link svg { width: 12px; height: 12px; }
+
+  /* PODCAST / BLOG LIST */
+  .list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .list-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.2s;
+  }
+  .list-card:hover {
+    border-color: var(--navy);
+    box-shadow: 0 4px 20px rgba(15,39,68,0.08);
+    transform: translateY(-2px);
+  }
+  .list-card.hidden { display: none; }
+  .list-card-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+  .list-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .list-card-host {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .list-card-why {
+    font-size: 13px;
+    color: #3a4460;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  /* FREE RESOURCES */
+  .free-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .free-card {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 24px;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.2s;
+  }
+  .free-card:hover { background: var(--navy-mid); transform: translateY(-2px); }
+  .free-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .free-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .free-card-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .free-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--orange);
+    text-decoration: none;
+    margin-top: 4px;
+  }
+  .free-card-link:hover { color: var(--orange-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  footer a { color: var(--orange); text-decoration: none; }
+  footer strong { color: var(--white); }
+
+  /* NO RESULTS */
+  .no-results {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 64px 24px;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .no-results span { display: block; font-size: 32px; margin-bottom: 12px; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 48px 24px 48px; }
+    main { padding: 32px 16px 64px; }
+    .section-nav { padding: 0 16px; overflow-x: auto; }
+    .hero-stats { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">THBA · GIE · UNC Kenan-Flagler</div>
+    <h1>The Young Founder's<br><em>Learning Hub</em></h1>
+    <p class="hero-sub">Books, podcasts, and blogs curated for high school and college students serious about building something. Assembled by Will Cardwell — entrepreneur, investor, professor.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">38</span><span class="stat-label">Books</span></div>
+      <div class="stat"><span class="stat-num">12</span><span class="stat-label">Podcasts</span></div>
+      <div class="stat"><span class="stat-num">14</span><span class="stat-label">Blogs</span></div>
+      <div class="stat"><span class="stat-num">8</span><span class="stat-label">Tags</span></div>
+    </div>
+  </div>
+</div>
+
+<nav class="section-nav">
+  <button class="nav-tab active" onclick="showSection('books', this)">📚 Books</button>
+  <button class="nav-tab" onclick="showSection('podcasts', this)">🎙️ Podcasts</button>
+  <button class="nav-tab" onclick="showSection('blogs', this)">📝 Blogs</button>
+  <button class="nav-tab" onclick="showSection('free', this)">🆓 Free Resources</button>
+</nav>
+
+<main>
+
+  <!-- ===== BOOKS ===== -->
+  <div id="books" class="content-section active">
+    <div class="section-header">
+      <span class="section-title">Books</span>
+      <span class="section-count" id="book-count">38 titles</span>
+    </div>
+    <div class="filter-bar" id="book-filters">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="filterCards('book', 'all', this)">All</button>
+      <button class="filter-btn" onclick="filterCards('book', 'Mindset', this)">Mindset</button>
+      <button class="filter-btn" onclick="filterCards('book', 'Startup Mechanics', this)">Startup Mechanics</button>
+      <button class="filter-btn" onclick="filterCards('book', 'Venture/Fundraising', this)">Venture</button>
+      <button class="filter-btn" onclick="filterCards('book', 'Sales & Hustle', this)">Sales & Hustle</button>
+      <button class="filter-btn" onclick="filterCards('book', 'Innovation', this)">Innovation</button>
+      <button class="filter-btn" onclick="filterCards('book', 'Financial Literacy', this)">Financial Literacy</button>
+      <button class="filter-btn" onclick="filterCards('book', 'Social Impact', this)">Social Impact</button>
+      <button class="filter-btn" onclick="filterCards('book', 'Leadership', this)">Leadership</button>
+    </div>
+    <div class="grid" id="book-grid"></div>
+  </div>
+
+  <!-- ===== PODCASTS ===== -->
+  <div id="podcasts" class="content-section">
+    <div class="section-header">
+      <span class="section-title">Podcasts</span>
+      <span class="section-count" id="podcast-count">12 shows</span>
+    </div>
+    <div class="filter-bar" id="podcast-filters">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="filterCards('podcast', 'all', this)">All</button>
+      <button class="filter-btn" onclick="filterCards('podcast', 'Mindset', this)">Mindset</button>
+      <button class="filter-btn" onclick="filterCards('podcast', 'Startup Mechanics', this)">Startup Mechanics</button>
+      <button class="filter-btn" onclick="filterCards('podcast', 'Venture/Fundraising', this)">Venture</button>
+      <button class="filter-btn" onclick="filterCards('podcast', 'Sales & Hustle', this)">Sales & Hustle</button>
+      <button class="filter-btn" onclick="filterCards('podcast', 'Innovation', this)">Innovation</button>
+      <button class="filter-btn" onclick="filterCards('podcast', 'Financial Literacy', this)">Financial Literacy</button>
+      <button class="filter-btn" onclick="filterCards('podcast', 'Social Impact', this)">Social Impact</button>
+      <button class="filter-btn" onclick="filterCards('podcast', 'Leadership', this)">Leadership</button>
+    </div>
+    <div class="list-grid" id="podcast-grid"></div>
+  </div>
+
+  <!-- ===== BLOGS ===== -->
+  <div id="blogs" class="content-section">
+    <div class="section-header">
+      <span class="section-title">Blogs & Online Reading</span>
+      <span class="section-count" id="blog-count">14 sites</span>
+    </div>
+    <div class="filter-bar" id="blog-filters">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="filterCards('blog', 'all', this)">All</button>
+      <button class="filter-btn" onclick="filterCards('blog', 'Mindset', this)">Mindset</button>
+      <button class="filter-btn" onclick="filterCards('blog', 'Startup Mechanics', this)">Startup Mechanics</button>
+      <button class="filter-btn" onclick="filterCards('blog', 'Venture/Fundraising', this)">Venture</button>
+      <button class="filter-btn" onclick="filterCards('blog', 'Sales & Hustle', this)">Sales & Hustle</button>
+      <button class="filter-btn" onclick="filterCards('blog', 'Innovation', this)">Innovation</button>
+      <button class="filter-btn" onclick="filterCards('blog', 'Financial Literacy', this)">Financial Literacy</button>
+      <button class="filter-btn" onclick="filterCards('blog', 'Social Impact', this)">Social Impact</button>
+      <button class="filter-btn" onclick="filterCards('blog', 'Leadership', this)">Leadership</button>
+    </div>
+    <div class="list-grid" id="blog-grid"></div>
+  </div>
+
+  <!-- ===== FREE RESOURCES ===== -->
+  <div id="free" class="content-section">
+    <div class="section-header">
+      <span class="section-title">Free Resources</span>
+      <span class="section-count">No credit card. No library card. Just open.</span>
+    </div>
+    <div class="free-grid" id="free-grid"></div>
+    <div style="margin-top:32px; background: var(--cream-dark); border-radius:12px; padding:24px; border-left: 3px solid var(--orange);">
+      <p style="font-size:14px; color: var(--navy); line-height:1.7;"><strong>Pro tip for students:</strong> Almost every book on this list is available free through your school or public library via the <strong>Libby app</strong> (libbyapp.com). Sign in with your library card, borrow ebooks and audiobooks instantly. No cost, no shipping, no excuses.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>Curated by <strong>Will Cardwell</strong> · Managing Partner, <strong>Metl Venture Partners</strong> · Professor of Practice, <strong>UNC Kenan-Flagler Business School</strong></p>
+  <p style="margin-top:8px;">Built for THBA Next Gen Entrepreneurship · GIE Global Immersion Experience · Updated 2026</p>
+  <p style="margin-top:8px;"><a href="https://metl.vc">metl.vc</a></p>
+</footer>
+
+<script>
+const TAGS = {
+  'Mindset': 'mindset',
+  'Startup Mechanics': 'startup',
+  'Venture/Fundraising': 'venture',
+  'Sales & Hustle': 'sales',
+  'Innovation': 'innovation',
+  'Financial Literacy': 'financial',
+  'Social Impact': 'social',
+  'Leadership': 'leadership',
+};
+
+function tagHTML(tag) {
+  const cls = TAGS[tag] || 'mindset';
+  return `<span class="tag tag-${cls}">${tag}</span>`;
+}
+
+const BOOKS = [
+  { n:1, title:"The Lean Startup", author:"Eric Ries", tags:["Startup Mechanics"], why:"The canonical build-measure-learn framework. Every young founder needs this vocabulary before writing a single line of code or a business plan.", link:"https://www.goodreads.com/book/show/10127019" },
+  { n:2, title:"Zero to One", author:"Peter Thiel", tags:["Mindset","Venture/Fundraising"], why:"Contrarian thinking about what makes a startup worth building in the first place. Short, dense, and endlessly debatable — perfect for class discussion.", link:"https://www.goodreads.com/book/show/18050143" },
+  { n:3, title:"The Innovator's Dilemma", author:"Clayton Christensen", tags:["Innovation"], why:"How great companies get disrupted by smaller ones. The foundational mental model for understanding market transitions.", link:"https://www.goodreads.com/book/show/2615" },
+  { n:4, title:"Mindset", author:"Carol Dweck", tags:["Mindset"], why:"Growth vs. fixed mindset — the psychological bedrock of entrepreneurship. The science is solid and the examples are instantly recognizable.", link:"https://www.goodreads.com/book/show/40745" },
+  { n:5, title:"Grit", author:"Angela Duckworth", tags:["Mindset"], why:"Persistence over talent. Duckworth's research shows that passion and perseverance predict success better than raw ability — a message every young person needs.", link:"https://www.goodreads.com/book/show/27213329" },
+  { n:6, title:"Shoe Dog", author:"Phil Knight", tags:["Mindset","Sales & Hustle"], why:"Nike's origin story — raw, honest, and deeply motivating. Knight nearly went bankrupt a dozen times before becoming iconic. One of the best business memoirs ever written.", link:"https://www.goodreads.com/book/show/27220736" },
+  { n:7, title:"The Hard Thing About Hard Things", author:"Ben Horowitz", tags:["Startup Mechanics","Leadership"], why:"No-BS look at what leading a company actually feels like. The antidote to every startup book that makes it seem easy.", link:"https://www.goodreads.com/book/show/18176747" },
+  { n:8, title:"Elon Musk", author:"Walter Isaacson", tags:["Innovation","Mindset"], why:"Love him or not, the first-principles thinking and sheer ambition are instructive. A masterclass in what it looks like to operate without fear of failure.", link:"https://www.goodreads.com/book/show/122765395" },
+  { n:9, title:"Becoming", author:"Michelle Obama", tags:["Leadership","Social Impact"], why:"Broader than entrepreneurship but essential for building a founder identity. How she navigated institutions, doubt, and expectation is directly applicable to any young builder.", link:"https://www.goodreads.com/book/show/38746485" },
+  { n:10, title:"Grinding It Out", author:"Ray Kroc", tags:["Sales & Hustle","Startup Mechanics"], why:"The McDonald's story — underrated book on persistence, systems thinking, and what real hustle looks like over decades, not quarters.", link:"https://www.goodreads.com/book/show/484527" },
+  { n:11, title:"The $100 Startup", author:"Chris Guillebeau", tags:["Startup Mechanics","Financial Literacy"], why:"Perfect for students who think they need capital to start. Dozens of real examples of people who built profitable businesses with almost nothing.", link:"https://www.goodreads.com/book/show/12605157" },
+  { n:12, title:"The Mom Test", author:"Rob Fitzpatrick", tags:["Startup Mechanics","Sales & Hustle"], why:"The best book ever written on customer discovery interviews. Teaches you how to ask questions that reveal truth rather than polite encouragement. Essential before any pitch.", link:"https://www.goodreads.com/book/show/52283963" },
+  { n:13, title:"Crossing the Chasm", author:"Geoffrey Moore", tags:["Innovation","Sales & Hustle"], why:"How to get from early adopters to mainstream markets. The 'chasm' concept changes how you think about product launches and growth strategy.", link:"https://www.goodreads.com/book/show/61329" },
+  { n:14, title:"Good to Great", author:"Jim Collins", tags:["Leadership"], why:"What separates companies that sustain excellence from those that plateau. The hedgehog concept and flywheel framework are durable mental models.", link:"https://www.goodreads.com/book/show/76865" },
+  { n:15, title:"Never Split the Difference", author:"Chris Voss", tags:["Sales & Hustle"], why:"Negotiation from an FBI hostage negotiator. Counterintuitive, immediately practical, and far more readable than any other negotiation book on the market.", link:"https://www.goodreads.com/book/show/26156469" },
+  { n:16, title:"Venture Deals", author:"Brad Feld & Jason Mendelson", tags:["Venture/Fundraising","Financial Literacy"], why:"The definitive plain-English guide to term sheets and VC mechanics. If you're ever going to raise money, read this first.", link:"https://www.goodreads.com/book/show/11865558" },
+  { n:17, title:"The Intelligent Investor", author:"Benjamin Graham", tags:["Financial Literacy"], why:"Warren Buffett's bible. Foundational investing thinking that teaches patience, margin of safety, and the difference between price and value.", link:"https://www.goodreads.com/book/show/106835" },
+  { n:18, title:"Rich Dad Poor Dad", author:"Robert Kiyosaki", tags:["Financial Literacy"], why:"Polarizing but powerful in one key way: it shifts how young people think about assets vs. income. Read critically but read it.", link:"https://www.goodreads.com/book/show/69571" },
+  { n:19, title:"Thinking, Fast and Slow", author:"Daniel Kahneman", tags:["Mindset","Innovation"], why:"How decisions actually get made — System 1 intuition vs. System 2 reasoning. Essential for founders who need to make good decisions under pressure.", link:"https://www.goodreads.com/book/show/11468377" },
+  { n:20, title:"The Design of Everyday Things", author:"Don Norman", tags:["Innovation"], why:"User-centered thinking applied to everything. If you're building a product, this changes how you see the relationship between design and human behavior.", link:"https://www.goodreads.com/book/show/840" },
+  { n:21, title:"Originals", author:"Adam Grant", tags:["Mindset","Social Impact"], why:"How non-conformists move the world. Grant shows that great ideas are only half the battle — learning to champion them is the other half.", link:"https://www.goodreads.com/book/show/25614523" },
+  { n:22, title:"Let My People Go Surfing", author:"Yvon Chouinard", tags:["Social Impact","Mindset"], why:"Patagonia's founder on building a values-driven company. Proof that purpose and profit are not opposites.", link:"https://www.goodreads.com/book/show/22155" },
+  { n:23, title:"The Blue Sweater", author:"Jacqueline Novogratz", tags:["Social Impact","Venture/Fundraising"], why:"The Acumen Fund founder on impact investing and patient capital. Excellent for students drawn to entrepreneurship as a force for global equity.", link:"https://www.goodreads.com/book/show/4129141" },
+  { n:24, title:"Start With Why", author:"Simon Sinek", tags:["Leadership","Social Impact"], why:"Purpose-first thinking. The Golden Circle framework is simple but the implications are profound — why you exist shapes everything else.", link:"https://www.goodreads.com/book/show/7108725" },
+  { n:25, title:"The Black Swan", author:"Nassim Nicholas Taleb", tags:["Mindset","Innovation"], why:"How rare, unpredictable events drive history — and why most forecasting is fiction. Essential framing for any founder operating under genuine uncertainty.", link:"https://www.goodreads.com/book/show/242472" },
+  { n:26, title:"Antifragile", author:"Nassim Nicholas Taleb", tags:["Mindset","Startup Mechanics"], why:"Things that gain from disorder. The most directly applicable Taleb book for founders — build companies that get stronger under stress, not just resilient to it.", link:"https://www.goodreads.com/book/show/13530973" },
+  { n:27, title:"The Little Book of Valuation", author:"Aswath Damodaran", tags:["Financial Literacy","Venture/Fundraising"], why:"Free, rigorous, and accessible — teaches you how to actually think about what a company is worth. Required reading before any pitch that includes financial projections.", link:"https://pages.stern.nyu.edu/~adamodar/" },
+  { n:28, title:"Founders at Work", author:"Jessica Livingston", tags:["Startup Mechanics","Mindset"], why:"Interviews with founders in the earliest days of their companies — before the success story was written. Raw, honest, and deeply instructive.", link:"https://www.goodreads.com/book/show/98233" },
+  { n:29, title:"The Startup of You", author:"Reid Hoffman & Ben Casnocha", tags:["Mindset","Leadership"], why:"Treat your career like a startup. From the LinkedIn co-founder — a practical framework for young people navigating an uncertain world.", link:"https://www.goodreads.com/book/show/12030438" },
+  { n:30, title:"Thinking in Bets", author:"Annie Duke", tags:["Mindset","Financial Literacy"], why:"Decision-making under uncertainty from a poker champion. Reframes success and failure around the quality of decisions, not outcomes.", link:"https://www.goodreads.com/book/show/35957157" },
+  { n:31, title:"Dare to Lead", author:"Brené Brown", tags:["Leadership","Social Impact"], why:"Vulnerability and courage in leadership. Brown's research shows that the leaders who build the best cultures are the ones willing to be seen.", link:"https://www.goodreads.com/book/show/40109367" },
+  { n:32, title:"Girl, Stop Apologizing", author:"Rachel Hollis", tags:["Mindset"], why:"Directly addresses the barriers women face in building ambition. Practical, direct, and energizing for young women figuring out what they want to build.", link:"https://www.goodreads.com/book/show/40046834" },
+  { n:33, title:"The Memo", author:"John Hope Bryant", tags:["Financial Literacy","Social Impact"], why:"Black wealth-building and economic inclusion from the founder of Operation HOPE. Essential reading for understanding entrepreneurship as a vehicle for generational change.", link:"https://www.goodreads.com/book/show/35397725" },
+  { n:34, title:"How to Be an Antiracist", author:"Ibram X. Kendi", tags:["Social Impact","Mindset"], why:"Foundational for building inclusive companies and understanding systemic context. The most important business decision you'll ever make is what kind of culture you build.", link:"https://www.goodreads.com/book/show/40265832" },
+  { n:35, title:"Rise and Grind", author:"Daymond John", tags:["Mindset","Sales & Hustle"], why:"FUBU founder and Shark Tank investor on outworking the competition. Accessible, energetic, and full of lessons about resourcefulness over resources.", link:"https://www.goodreads.com/book/show/33830714" },
+  { n:36, title:"The Pact", author:"Sampson Davis, George Jenkins & Rameck Hunt", tags:["Mindset","Social Impact"], why:"Three young men from Newark who made a pact to become doctors. Not a startup book — something better: an extraordinary story about what commitment against all odds actually looks like.", link:"https://www.goodreads.com/book/show/52143" },
+  { n:37, title:"Disrupt Yourself", author:"Jay Samit", tags:["Innovation","Startup Mechanics"], why:"A practical disruption framework from a serial entrepreneur. Focuses on identifying hidden assets and opportunities in any environment — applicable well beyond tech.", link:"https://www.goodreads.com/book/show/23848038" },
+  { n:38, title:"The Innovation Mindset", author:"Lorraine Marchand", tags:["Innovation","Leadership"], why:"A Black woman executive at J&J on building an inclusive innovation culture. Underread and excellent — a fresh perspective on what real innovation leadership looks like.", link:"https://www.goodreads.com/book/show/57693939" },
+];
+
+const PODCASTS = [
+  { icon:"🏗️", title:"How I Built This", host:"Guy Raz (NPR)", tags:["Mindset","Startup Mechanics"], why:"Founder origin stories told brilliantly. The most accessible entrepreneurship podcast for young listeners — every episode is a case study in resilience.", link:"https://www.npr.org/podcasts/510313/how-i-built-this" },
+  { icon:"📈", title:"Masters of Scale", host:"Reid Hoffman", tags:["Startup Mechanics","Innovation"], why:"How companies grow from zero to massive, with counterintuitive insights from the founders who did it. LinkedIn's co-founder as host is a huge advantage.", link:"https://mastersofscale.com" },
+  { icon:"⏱️", title:"The Tim Ferriss Show", host:"Tim Ferriss", tags:["Mindset","Leadership"], why:"Long-form deconstructions of world-class performers. The questions Ferriss asks — about morning routines, decision-making, books, failures — are worth stealing.", link:"https://tim.blog/podcast" },
+  { icon:"💰", title:"Invest Like the Best", host:"Patrick O'Shaughnessy", tags:["Venture/Fundraising","Financial Literacy"], why:"Deep conversations with investors and founders about how they think. More advanced — excellent for college students interested in the investor side of the table.", link:"https://joincolossus.com/shows/invest-like-the-best" },
+  { icon:"🧠", title:"The Knowledge Project", host:"Shane Parrish", tags:["Mindset","Innovation"], why:"Mental models and decision-making from world-class thinkers. Pairs perfectly with Taleb and Kahneman on your reading list.", link:"https://fs.blog/knowledge-project-podcast" },
+  { icon:"🏛️", title:"Acquired", host:"Ben Gilbert & David Rosenthal", tags:["Innovation","Venture/Fundraising"], why:"Extraordinarily deep company histories — Nike, LVMH, Nvidia, Apple. Long episodes but worth every minute. The best business history storytelling available.", link:"https://www.acquired.fm" },
+  { icon:"💡", title:"My First Million", host:"Sam Parr & Shaan Puri", tags:["Startup Mechanics","Sales & Hustle"], why:"Brainstorming business ideas in real time, with real numbers. Energetic, irreverent, and very accessible for high schoolers who want to see how founders think.", link:"https://www.mfmpod.com" },
+  { icon:"👩‍💻", title:"Women in Tech", host:"Espree Devora", tags:["Leadership","Social Impact"], why:"Spotlight on women founders and operators in tech. Essential listening for a complete picture of who is building the future.", link:"https://womenintechshow.com" },
+  { icon:"📓", title:"The Diary of a CEO", host:"Steven Bartlett", tags:["Mindset","Leadership"], why:"Young British entrepreneur interviewing founders, scientists, and thinkers. Enormously popular with college-age listeners — produced at a very high level.", link:"https://stevenbartlett.com/the-diary-of-a-ceo-podcast" },
+  { icon:"🚀", title:"Venture Stories", host:"Erik Torenberg", tags:["Venture/Fundraising"], why:"VC-focused conversations with investors about how they evaluate companies, build funds, and think about markets. Good primer for students interested in the investor side.", link:"https://villagelobal.vc/podcast" },
+  { icon:"🛠️", title:"The Indie Hackers Podcast", host:"Courtland Allen", tags:["Startup Mechanics","Financial Literacy"], why:"Bootstrapped founders sharing real revenue numbers. Demystifies the 'you need VC to start' myth and opens up a whole world of self-funded building.", link:"https://www.indiehackers.com/podcast" },
+  { icon:"🌍", title:"How to Save a Planet", host:"Gimlet / Spotify", tags:["Social Impact","Innovation"], why:"Climate entrepreneurship and systems change through a startup lens. For students who want to build companies that matter beyond the bottom line.", link:"https://gimletmedia.com/shows/howtosaveaplanet" },
+];
+
+const BLOGS = [
+  { icon:"✍️", title:"Paul Graham Essays", host:"paulgraham.com", tags:["Mindset","Startup Mechanics"], why:"The most influential writing on startups ever published. Free, timeless, and essential. Start with 'Do Things That Don't Scale' and 'How to Get Startup Ideas.'", link:"https://paulgraham.com/articles.html" },
+  { icon:"📊", title:"Stratechery", host:"Ben Thompson", tags:["Innovation","Startup Mechanics"], why:"The best technology and business strategy writing available. Some free, some paid — the free tier alone is worth bookmarking.", link:"https://stratechery.com" },
+  { icon:"🐐", title:"Seth Godin's Blog", host:"Seth Godin", tags:["Mindset","Sales & Hustle"], why:"Daily short essays on marketing, leadership, and shipping work. One of the most consistent thinkers in business writing. Subscribe and read every day.", link:"https://seths.blog" },
+  { icon:"🔄", title:"Both Sides of the Table", host:"Mark Suster", tags:["Venture/Fundraising"], why:"VC writing from both the founder and investor perspective. Unusually honest about what VCs actually look for and how the power dynamic really works.", link:"https://bothsidesofthetable.com" },
+  { icon:"📌", title:"AVC", host:"Fred Wilson (USV)", tags:["Venture/Fundraising","Financial Literacy"], why:"Union Square Ventures founder posting daily on VC, startups, and markets for 20+ years. A living archive of how smart investors think.", link:"https://avc.com" },
+  { icon:"🤝", title:"Feld Thoughts", host:"Brad Feld", tags:["Venture/Fundraising"], why:"The author of Venture Deals extends the book with real deal stories, VC fund mechanics, and hard-won lessons from decades of investing.", link:"https://feld.com" },
+  { icon:"📐", title:"Damodaran Online", host:"Aswath Damodaran (NYU)", tags:["Financial Literacy","Venture/Fundraising"], why:"Free textbooks, datasets, lecture videos, and valuation tools from the most generous educator in finance. A graduate-level education available to anyone.", link:"https://pages.stern.nyu.edu/~adamodar/" },
+  { icon:"🥇", title:"First Round Review", host:"First Round Capital", tags:["Startup Mechanics","Leadership"], why:"Long-form practical essays on building companies — hiring, culture, product, sales. Some of the best free startup content on the internet.", link:"https://review.firstround.com" },
+  { icon:"📖", title:"OpenStax Entrepreneurship", host:"OpenStax / Rice University", tags:["Startup Mechanics","Financial Literacy"], why:"A free, peer-reviewed entrepreneurship textbook designed for college students. Covers the full arc from ideation to growth.", link:"https://openstax.org/subjects/business" },
+  { icon:"🌱", title:"Kauffman Foundation", host:"Ewing Marion Kauffman Foundation", tags:["Startup Mechanics","Social Impact"], why:"Research, reports, and resources on entrepreneurship education — especially strong on inclusion, ecosystem building, and minority entrepreneurship.", link:"https://www.kauffman.org" },
+  { icon:"💻", title:"Indie Hackers", host:"Courtland Allen", tags:["Startup Mechanics","Financial Literacy"], why:"Community and interviews with bootstrapped founders sharing real revenue numbers. Transparent in a way the startup press never is.", link:"https://www.indiehackers.com" },
+  { icon:"📬", title:"Lenny's Newsletter", host:"Lenny Rachitsky", tags:["Startup Mechanics","Innovation"], why:"The best product management and growth writing available. Deeply practical for student founders who want to build products people actually use.", link:"https://www.lennysnewsletter.com" },
+  { icon:"🎯", title:"Not Boring", host:"Packy McCormick", tags:["Innovation","Venture/Fundraising"], why:"Smart, fun deep-dives on tech companies and business strategy. Reads like a very smart friend explaining why something matters.", link:"https://www.notboring.co" },
+  { icon:"👤", title:"The Profile", host:"Polina Marinova Pompliano", tags:["Mindset","Leadership"], why:"Deep profiles of extraordinary people — diverse, well-researched, and unusually insightful about how exceptional people actually think.", link:"https://theprofile.email" },
+];
+
+const FREE = [
+  { label:"Valuation · Finance", title:"Damodaran Online", desc:"Free textbooks, lecture videos, datasets, and valuation tools from NYU's Aswath Damodaran. A graduate-level finance education available to anyone on earth.", link:"https://pages.stern.nyu.edu/~adamodar/" },
+  { label:"Startup Mechanics · Mindset", title:"Paul Graham Essays", desc:"The complete archive of PG's essays — startup strategy, life advice, and contrarian thinking — free at paulgraham.com. The most-cited writing in Silicon Valley.", link:"https://paulgraham.com/articles.html" },
+  { label:"Startup Mechanics · Finance", title:"OpenStax Entrepreneurship", desc:"A peer-reviewed, free entrepreneurship textbook from Rice University, covering ideation through fundraising. Designed specifically for college students.", link:"https://openstax.org/subjects/business" },
+  { label:"Ecosystem · Inclusion", title:"Kauffman Foundation Library", desc:"Free research, reports, and curriculum on entrepreneurship education, minority founders, and startup ecosystems. Deep and underutilized.", link:"https://www.kauffman.org/resources/" },
+  { label:"Community · Revenue Transparency", title:"Indie Hackers", desc:"Free community where bootstrapped founders share real revenue numbers and talk openly about what's working. The most honest corner of startup internet.", link:"https://www.indiehackers.com" },
+  { label:"Venture · Inclusion", title:"BLCK VC", desc:"Resources and community focused on Black venture professionals and founders. Critical reading for students interested in the investor side of the table.", link:"https://www.blckvc.com" },
+  { label:"Underrepresented Founders", title:"Black Founders", desc:"Community resources, events, and networks for Black entrepreneurs. Backed by decades of community building and practical support.", link:"https://www.blackfounders.com" },
+  { label:"Venture · Impact", title:"Acumen Reading List", desc:"Jacqueline Novogratz's Acumen Fund publishes free resources on impact investing, patient capital, and social entrepreneurship.", link:"https://acumen.org/blog/" },
+  { label:"All Formats · Free", title:"Libby App", desc:"Free ebook and audiobook borrowing with any library card. Almost every book on this list is available instantly. No cost, no shipping, no excuses.", link:"https://libbyapp.com" },
+];
+
+function renderTag(tag) {
+  const cls = TAGS[tag] || 'mindset';
+  return `<span class="tag tag-${cls}">${tag}</span>`;
+}
+
+function renderBooks() {
+  const grid = document.getElementById('book-grid');
+  grid.innerHTML = BOOKS.map((b, i) => `
+    <div class="card" data-tags="${b.tags.join('|')}" data-type="book">
+      <div class="card-num">#${String(b.n).padStart(2,'0')}</div>
+      <div class="card-title">${b.title}</div>
+      <div class="card-author">${b.author}</div>
+      <div class="card-why">${b.why}</div>
+      <div class="card-tags">${b.tags.map(renderTag).join('')}</div>
+      <a class="card-link" href="${b.link}" target="_blank" rel="noopener">
+        Find it on Goodreads
+        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  `).join('');
+}
+
+function renderPodcasts() {
+  const grid = document.getElementById('podcast-grid');
+  grid.innerHTML = PODCASTS.map(p => `
+    <div class="list-card" data-tags="${p.tags.join('|')}" data-type="podcast">
+      <div class="list-card-icon">${p.icon}</div>
+      <div class="list-card-title">${p.title}</div>
+      <div class="list-card-host">${p.host}</div>
+      <div class="list-card-why">${p.why}</div>
+      <div class="card-tags">${p.tags.map(renderTag).join('')}</div>
+      <a class="card-link" href="${p.link}" target="_blank" rel="noopener">
+        Listen
+        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  `).join('');
+}
+
+function renderBlogs() {
+  const grid = document.getElementById('blog-grid');
+  grid.innerHTML = BLOGS.map(b => `
+    <div class="list-card" data-tags="${b.tags.join('|')}" data-type="blog">
+      <div class="list-card-icon">${b.icon}</div>
+      <div class="list-card-title">${b.title}</div>
+      <div class="list-card-host">${b.host}</div>
+      <div class="list-card-why">${b.why}</div>
+      <div class="card-tags">${b.tags.map(renderTag).join('')}</div>
+      <a class="card-link" href="${b.link}" target="_blank" rel="noopener">
+        Visit
+        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  `).join('');
+}
+
+function renderFree() {
+  const grid = document.getElementById('free-grid');
+  grid.innerHTML = FREE.map(f => `
+    <div class="free-card">
+      <div class="free-card-label">${f.label}</div>
+      <div class="free-card-title">${f.title}</div>
+      <div class="free-card-desc">${f.desc}</div>
+      <a class="free-card-link" href="${f.link}" target="_blank" rel="noopener">
+        Open →
+      </a>
+    </div>
+  `).join('');
+}
+
+function showSection(id, btn) {
+  document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function filterCards(type, tag, btn) {
+  const filterBar = document.getElementById(`${type}-filters`);
+  filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const gridId = `${type}-grid`;
+  const cards = document.querySelectorAll(`#${gridId} [data-type="${type}"]`);
+  let visible = 0;
+
+  cards.forEach(card => {
+    const cardTags = card.getAttribute('data-tags');
+    const show = tag === 'all' || cardTags.includes(tag);
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+
+  // No results
+  const existing = document.querySelector(`#${gridId} .no-results`);
+  if (existing) existing.remove();
+  if (visible === 0) {
+    const noRes = document.createElement('div');
+    noRes.className = 'no-results';
+    noRes.innerHTML = `<span>🔍</span>No results for "${tag}"`;
+    document.getElementById(gridId).appendChild(noRes);
+  }
+
+  // Update count
+  const countMap = { book: 'book-count', podcast: 'podcast-count', blog: 'blog-count' };
+  const labels = { book: 'titles', podcast: 'shows', blog: 'sites' };
+  if (countMap[type]) {
+    document.getElementById(countMap[type]).textContent =
+      tag === 'all' ? `${visible} ${labels[type]}` : `${visible} ${labels[type]} tagged "${tag}"`;
+  }
+}
+
+// Init
+renderBooks();
+renderPodcasts();
+renderBlogs();
+renderFree();
+</script>
+</body>
+</html>
